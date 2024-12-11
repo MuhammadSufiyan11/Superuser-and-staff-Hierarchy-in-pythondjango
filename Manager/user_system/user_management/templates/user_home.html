@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Home</title>
+    <style>
+        /* Global Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b); /* Beautiful gradient */
+            color: white;
+            overflow: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 40px;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transform: translateY(20px);
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .welcome-message {
+            background: #f9f9f9;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transform: translateY(30px);
+            animation: slideUp 1s ease-out forwards;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            color: #333;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            font-weight: bold;
+            animation: fadeInText 1.2s ease-out;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            animation: fadeInText 1.4s ease-out;
+        }
+
+        strong {
+            color: #ff7e5f;
+            font-weight: bold;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInText {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            p {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome-message">
+            <h2>Welcome, {{ request.user.username }}!</h2>
+            {% if parent_user %}
+                <p>You are working under the Superuser: <strong>{{ parent_user.username }}</strong></p>
+            {% else %}
+                <p>You were added in system by the Superuser <strong>I am Admin (Sufyan)</strong>.</p>
+            {% endif %}
+        </div>
+        <footer style="text-align:center; margin-top: 40px; font-size: 0.9rem; color: #777;">
+            <p>&copy; 2024 Vista.One All Rights Reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
